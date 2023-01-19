@@ -12,6 +12,7 @@ public class playerController : MonoBehaviour
     public int score;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI endText;
+    public GameObject timer;
     // Start is called before the first frame update
     void Start()
     {
@@ -56,7 +57,8 @@ public class playerController : MonoBehaviour
             endText.text = "You lose!";
         }
         gameObject.GetComponent<playerController>().enabled = false;
-        StartCoroutine(Reset());
+        timer.SetActive(false);
+        scoreText.StartCoroutine(Reset());
     }
 
     IEnumerator Reset()
@@ -64,5 +66,10 @@ public class playerController : MonoBehaviour
         yield return new WaitForSeconds(5);
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
+    }
+
+    public void timerStart()
+    {
+        timer.SetActive(true);
     }
 }

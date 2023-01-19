@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class IntroTextUI : MonoBehaviour
 {
-    public GameObject timer;
+    public GameObject player;
+    playerController playerScript;
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerScript = player.GetComponent<playerController>();
     }
 
     // Update is called once per frame
@@ -16,7 +17,9 @@ public class IntroTextUI : MonoBehaviour
     {
         if (Input.anyKey)
         {
-            Destroy(gameObject);
+            playerScript.timerStart();
+            Debug.Log("Timer should start");
+            gameObject.SetActive(false);
         }
     }
 

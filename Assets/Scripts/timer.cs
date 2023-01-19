@@ -8,20 +8,20 @@ public class timer : MonoBehaviour
 
 {
     public TextMeshProUGUI timerText;
-    public float time = 10.0f;
+    public float time = 11.0f;
     public TextMeshProUGUI endText;
-    public playerController player;
+    public GameObject player;
     public bool gameStarted = false;
+    playerController playerScript;
     // Start is called before the first frame update
     void Start()
     {
-
+        playerScript = player.GetComponent<playerController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (gameStarted == true)
         {
                 time -= Time.deltaTime;
                 int seconds = (int)(time % 60);
@@ -38,7 +38,8 @@ public class timer : MonoBehaviour
 
     void timerEnded()
     {
-        player.Win();
+        playerScript.Win();
+        Destroy(gameObject);
     }
 
 }
