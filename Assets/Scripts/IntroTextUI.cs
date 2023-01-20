@@ -18,7 +18,7 @@ public class IntroTextUI : MonoBehaviour
         if (Input.anyKey)
         {
             playerScript.timerStart();
-            Debug.Log("Timer should start");
+            playerScript.GetComponent<AudioSource>().enabled = true;
             gameObject.SetActive(false);
         }
     }

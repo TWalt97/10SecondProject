@@ -29,7 +29,6 @@ public class timer : MonoBehaviour
                 if (time <= 0.0f)
                 {
                     timerEnded();
-                    Debug.Log("Timer ended");
                 }
 
                 timerText.text = seconds.ToString();           

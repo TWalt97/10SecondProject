@@ -13,11 +13,15 @@ public class playerController : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI endText;
     public GameObject timer;
+    public AudioClip winMusic;
+    public AudioClip loseMusic;
+    AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
         score = 0;
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -51,10 +55,14 @@ public class playerController : MonoBehaviour
         if (score == 10)
         {
             endText.text = "You win!";
+            gameObject.GetComponent <AudioSource>().clip = winMusic;
+            gameObject.GetComponent<AudioSource>().Play();
         }
         else
         {
             endText.text = "You lose!";
+            gameObject.GetComponent <AudioSource>().clip = loseMusic;
+            gameObject.GetComponent<AudioSource>().Play();
         }
         gameObject.GetComponent<playerController>().enabled = false;
         timer.SetActive(false);
@@ -71,5 +79,10 @@ public class playerController : MonoBehaviour
     public void timerStart()
     {
         timer.SetActive(true);
+    }
+
+    public void PlaySound(AudioClip clip)
+    {
+        audioSource.PlayOneShot(clip);
     }
 }
